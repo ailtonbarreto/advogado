@@ -11,6 +11,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
 		rel="stylesheet">
+	<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 	<link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
 	<link rel="stylesheet" href="css/layout.css">
 	<title>Ana Carolina Santos | Advocacia</title>
@@ -55,8 +56,8 @@
 				</div>
 			</div>
 			<div class="hero-portrait">
-				<img src="cover_main.png" alt="Ana Carolina Santos em seu escritório">
-				<div class="portrait-caption"><span>Atendimento jurídico individualizado</span><span>OAB/SP 544.375</span></div>
+				<model-viewer id="scalesModel" src="assets/img/scales_of_justice.glb" 
+					camera-orbit="0deg 75deg 100%" exposure="1.1" shadow-intensity="2"></model-viewer>
 			</div>
 
 		</section>
@@ -105,7 +106,7 @@
 
 		<section class="about" id="sobre-mim">
 			<div class="about-image">
-				<img src="assets/img/LOGOTIPO.jpg" alt="Identidade visual de Ana Carolina Santos, advogada">
+				<img src="cover_main.png" alt="Identidade visual de Ana Carolina Santos, advogada">
 			</div>
 			<div class="about-content">
 				<p class="eyebrow"><span></span> Sobre mim</p>
