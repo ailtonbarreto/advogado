@@ -31,20 +31,25 @@ document.addEventListener("keydown", (event) => {
 
 currentYear.textContent = new Date().getFullYear();
 
-const practiceCards = document.querySelectorAll(".practice-card");
-const aboutRevealTargets = document.querySelectorAll(".about-image, .about-content");
+const scrollRevealSections = document.querySelectorAll(".practice, .about, #contato");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-if ((practiceCards.length || aboutRevealTargets.length) && "IntersectionObserver" in window && !prefersReducedMotion) {
+if (scrollRevealSections.length && "IntersectionObserver" in window && !prefersReducedMotion) {
 	document.documentElement.classList.add("has-scroll-reveal");
 
-	const cardObserver = new IntersectionObserver((entries) => {
+	const sectionObserver = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
-			entry.target.classList.toggle("is-visible", entry.isIntersecting);
-		});
-	}, { threshold: 0.05, rootMargin: "12% 0px 12% 0px" });
+			const viewportHeight = entry.rootBounds ? entry.rootBounds.height : window.innerHeight;
+			const visibleSectionHeight = Math.min(entry.boundingClientRect.height, viewportHeight);
+			const visibleRatio = visibleSectionHeight
+				? entry.intersectionRect.height / visibleSectionHeight
+				: 0;
 
-	[...practiceCards, ...aboutRevealTargets].forEach((target) => cardObserver.observe(target));
+			entry.target.classList.toggle("is-visible", entry.isIntersecting && visibleRatio > 0.7);
+		});
+	}, { threshold: Array.from({ length: 101 }, (_, index) => index / 100) });
+
+	scrollRevealSections.forEach((section) => sectionObserver.observe(section));
 }
 
 const scalesModel = document.getElementById("scalesModel");

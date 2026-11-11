@@ -27,6 +27,7 @@ body {
 	color: var(--text);
 	font-family: var(--sans);
 	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
 }
 
 body.menu-open {
@@ -265,15 +266,15 @@ h2 em {
 	position: relative;
 	transform: translate(32px, 35px);
 	width: calc(100% + 64px);
-	z-index: 2;
+	z-index: 0;
 }
 
 .hero-portrait model-viewer {
 	background-color: transparent;
-	height: 100%;
+	height: 90%;
 	position: relative;
 	width: 100%;
-	z-index: 1;
+	z-index: 1000;
 }
 
 .portrait-caption {
@@ -320,6 +321,14 @@ h2 em {
 	margin: 0 auto;
 	max-width: 1210px;
 	width: calc(100% - 13.4vw);
+}
+
+.intro,
+.practice,
+.about,
+.contact {
+	position: relative;
+	z-index: 1;
 }
 
 .intro {
@@ -385,16 +394,16 @@ h2 em {
 	transform: translateY(18px);
 }
 
-.has-scroll-reveal .practice-card.is-visible {
+.has-scroll-reveal .practice.is-visible .practice-card {
 	opacity: 1;
 	transform: translateY(0);
 }
 
-.has-scroll-reveal .practice-card.is-visible:nth-child(2) {
+.has-scroll-reveal .practice.is-visible .practice-card:nth-child(2) {
 	transition-delay: 0s, 0s, 120ms;
 }
 
-.has-scroll-reveal .practice-card.is-visible:nth-child(3) {
+.has-scroll-reveal .practice.is-visible .practice-card:nth-child(3) {
 	transition-delay: 0s, 0s, 240ms;
 }
 
@@ -475,8 +484,8 @@ h2 em {
 	transition-delay: 180ms;
 }
 
-.has-scroll-reveal .about-image.is-visible,
-.has-scroll-reveal .about-content.is-visible {
+.has-scroll-reveal .about.is-visible .about-image,
+.has-scroll-reveal .about.is-visible .about-content {
 	opacity: 1;
 	transform: translate(0);
 }
@@ -497,7 +506,7 @@ h2 em {
 .about-image img {
 	height: 100%;
 	object-fit: cover;
-	object-position: 43% center;
+	object-position: 65% center;
 	position: relative;
 	width: 100%;
 	z-index: 1;
@@ -540,6 +549,23 @@ h2 em {
 .contact {
 	padding-bottom: 80px;
 	padding-top: 100px;
+}
+
+.has-scroll-reveal .contact-panel,
+.has-scroll-reveal .contact-note {
+	opacity: 0;
+	transform: translateY(18px);
+	transition: opacity 800ms ease-out, transform 800ms ease-out;
+}
+
+.has-scroll-reveal .contact-note {
+	transition-delay: 120ms;
+}
+
+.has-scroll-reveal .contact.is-visible .contact-panel,
+.has-scroll-reveal .contact.is-visible .contact-note {
+	opacity: 1;
+	transform: translateY(0);
 }
 
 .contact-panel {
@@ -944,6 +970,13 @@ h2 em {
 
 	.has-scroll-reveal .about-image,
 	.has-scroll-reveal .about-content {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+	.has-scroll-reveal .contact-panel,
+	.has-scroll-reveal .contact-note {
 		opacity: 1;
 		transform: none;
 		transition: none;
